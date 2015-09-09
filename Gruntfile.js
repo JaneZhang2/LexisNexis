@@ -31,16 +31,29 @@
         }
       },
 
-      // Automatically inject Bower components into the app
-      wiredep: {
+      requirejs: {
         lnc: {
-          src: ['<%= config.lnc.dist %>/index.html']
+          options: {
+            appDir: 'lnc/app/scripts',
+            baseUrl: './',
+            mainConfigFile: '<%= config.lnc.app %>/scripts/config.js',
+            dir: '<%= config.lnc.dist %>/scripts'
+          }
+        }
+      },
+
+      bowerRequirejs: {
+        lnc: {
+          rjsConfig: '<%= config.lnc.dist %>/scripts/config.js',
+          options: {
+            exclude: 'requirejs'
+          }
         }
       }
 
     });
 
-    grunt.registerTask('default', ['clean', 'copy', 'wiredep']);
+    grunt.registerTask('default', ['clean', 'copy', 'requirejs', 'bowerRequirejs']);
   };
 
 })();
