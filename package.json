@@ -7,7 +7,6 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.8.1",
     "grunt-requirejs": "^0.4.2",
-    "grunt-wiredep": "^2.0.0",
     "jit-grunt": "^0.9.1"
   }
 }
