@@ -31,6 +31,25 @@
         }
       },
 
+      // Automatically inject Bower components into the app
+      wiredep: {
+        lnc: {
+          src: '<%= config.lnc.dist %>/index.html',
+          exclude: /^((?!requirejs).)*$/,
+          fileTypes: {
+            html: {
+              block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
+              detect: {
+                js: /<script.*src=['"]([^'"]+)/gi
+              },
+              replace: {
+                js: '<script src="{{filePath}}" data-main="scripts/main.js"></script>'
+              }
+            }
+          }
+        }
+      },
+
       requirejs: {
         lnc: {
           options: {
@@ -53,7 +72,7 @@
 
     });
 
-    grunt.registerTask('default', ['clean', 'copy', 'requirejs', 'bowerRequirejs']);
+    grunt.registerTask('default', ['clean', 'copy', 'wiredep', 'requirejs', 'bowerRequirejs']);
   };
 
 })();
