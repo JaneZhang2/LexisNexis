@@ -41,6 +41,7 @@ module.exports = function (grunt) {
     wiredep: {
       lnc: {
         src: '<%= config.lnc.dist %>/index.html',
+        ignorePath: /(\.\.\/){2}/,
         exclude: /^((?!requirejs).)*$/,
         fileTypes: {
           html: {
@@ -102,14 +103,12 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      livereload: {
+      lnc: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.lnc.dist %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '<%= config.lnc.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= config.lnc.dist %>/**/*.{css,js,html,png,jpg,jpeg,gif}'
         ]
       }
     },
@@ -119,22 +118,18 @@ module.exports = function (grunt) {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
-        livereload: 35729
+        hostname: '10.212.42.78',
+        livereload: 35729,
+        open: true
       },
-      livereload: {
+      lnc: {
         options: {
-          open: true,
+
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
-              ),
-              connect().use(
-                '/dist/styles',
-                connect.static('./dist/styles')
               ),
               connect.static(config.lnc.dist)
             ];
@@ -145,8 +140,7 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('serve', ['connect:livereload', 'watch']);
-
+  grunt.registerTask('serve', ['connect', 'watch']);
   grunt.registerTask('views', ['copy', 'wiredep']);
   grunt.registerTask('scripts', ['requirejs', 'concat']);
   grunt.registerTask('default', ['clean', 'concurrent', 'serve']);
