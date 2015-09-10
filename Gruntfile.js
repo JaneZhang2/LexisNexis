@@ -98,11 +98,56 @@ module.exports = function (grunt) {
         'views',
         'scripts'
       ]
+    },
+
+    // Watches files for changes and runs tasks based on the changed files
+    watch: {
+      livereload: {
+        options: {
+          livereload: '<%= connect.options.livereload %>'
+        },
+        files: [
+          '<%= config.lnc.dist %>/{,*/}*.html',
+          '.tmp/styles/{,*/}*.css',
+          '<%= config.lnc.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+        ]
+      }
+    },
+
+    // The actual grunt server settings
+    connect: {
+      options: {
+        port: 9000,
+        // Change this to '0.0.0.0' to access the server from outside.
+        hostname: 'localhost',
+        livereload: 35729
+      },
+      livereload: {
+        options: {
+          open: true,
+          middleware: function (connect) {
+            return [
+              connect.static('.tmp'),
+              connect().use(
+                '/bower_components',
+                connect.static('./bower_components')
+              ),
+              connect().use(
+                '/dist/styles',
+                connect.static('./dist/styles')
+              ),
+              connect.static(config.lnc.dist)
+            ];
+          }
+        }
+      }
     }
 
   });
 
+  grunt.registerTask('serve', ['connect:livereload', 'watch']);
+
   grunt.registerTask('views', ['copy', 'wiredep']);
   grunt.registerTask('scripts', ['requirejs', 'concat']);
-  grunt.registerTask('default', ['clean', 'concurrent']);
+  grunt.registerTask('default', ['clean', 'concurrent', 'serve']);
 };
