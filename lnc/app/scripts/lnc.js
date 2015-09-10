@@ -1,8 +1,6 @@
 define(['routes', 'dependencyResolverFor'], function (config, dependencyResolverFor) {
   'use strict';
 
-  alert('test');
-
   var module = angular.module('lnc', ['ngRoute']);
 
   module.config(
