@@ -6,7 +6,8 @@ module.exports = function (grunt) {
   var config = {
     lnc: {
       app: 'lnc/app',
-      dist: 'lnc/dist'
+      dist: 'lnc/dist',
+      main: 'scripts/main-debug'
     }
   };
 
@@ -25,7 +26,13 @@ module.exports = function (grunt) {
     copy: {
       lnc: {
         files: [{
-          '<%= config.lnc.dist %>/index.html': '<%= config.lnc.app %>/index.html'
+          expand: true,
+          cwd: '<%= config.lnc.app %>',
+          dest: '<%= config.lnc.dist %>',
+          src: [
+            'index.html',
+            'views/*.html'
+          ]
         }]
       }
     },
@@ -42,9 +49,21 @@ module.exports = function (grunt) {
               js: /<script.*src=['"]([^'"]+)/gi
             },
             replace: {
-              js: '<script src="{{filePath}}" data-main="scripts/main.js"></script>'
+              js: '<script src="{{filePath}}" data-main="<%= config.lnc.main %>"></script>'
             }
           }
+        }
+      }
+    },
+
+    concat: {
+      lnc: {
+        expand: true,
+        cwd: '<%= config.lnc.app %>/scripts',
+        src: ['main.js', 'config.js'],
+        dest: '<%= config.lnc.dist %>/scripts',
+        rename: function (dest) {
+          return dest + '/' + 'main-debug.js';
         }
       }
     },
@@ -56,6 +75,7 @@ module.exports = function (grunt) {
           baseUrl: './',
           mainConfigFile: '<%= config.lnc.app %>/scripts/config.js',
           dir: '<%= config.lnc.dist %>/scripts',
+          skipDirOptimize: true,
           modules: [{
             name: 'main'
           }]
@@ -76,13 +96,13 @@ module.exports = function (grunt) {
     concurrent: {
       lnc: [
         'views',
-        'requirejs'
+        'scripts'
       ]
     }
 
   });
 
   grunt.registerTask('views', ['copy', 'wiredep']);
-
+  grunt.registerTask('scripts', ['requirejs', 'concat']);
   grunt.registerTask('default', ['clean', 'concurrent']);
 };

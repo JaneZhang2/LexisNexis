@@ -5,6 +5,11 @@ require.config({
         'angular',
         'angular-route'
       ]
+    },
+    'angular-route': {
+      deps: [
+        'angular'
+      ]
     }
   },
   paths: {
