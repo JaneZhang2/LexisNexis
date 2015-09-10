@@ -19,6 +19,9 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
+      options: {
+        force: true
+      },
       lnc: '<%= config.lnc.dist %>'
     },
 
@@ -143,5 +146,5 @@ module.exports = function (grunt) {
   grunt.registerTask('serve', ['connect', 'watch']);
   grunt.registerTask('views', ['copy', 'wiredep']);
   grunt.registerTask('scripts', ['requirejs', 'concat']);
-  grunt.registerTask('default', ['clean', 'concurrent', 'serve']);
+  grunt.registerTask('default', ['clean', 'concurrent']);
 };
