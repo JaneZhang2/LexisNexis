@@ -72,6 +72,19 @@ module.exports = function (grunt) {
       }
     },
 
+    // ng-annotate tries to make the code safe for minification automatically
+    // by using the Angular long form for dependency injection.
+    ngAnnotate: {
+      lnc: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.lnc.dist %>/scripts',
+          src: '{,*/}*.js',
+          dest: '<%= config.lnc.dist %>/scripts'
+        }]
+      }
+    },
+
     requirejs: {
       lnc: {
         options: {
@@ -79,7 +92,7 @@ module.exports = function (grunt) {
           baseUrl: './',
           mainConfigFile: '<%= config.lnc.app %>/scripts/config.js',
           dir: '<%= config.lnc.dist %>/scripts',
-          skipDirOptimize: true,
+          /*skipDirOptimize: true,*/
           modules: [{
             name: 'main'
           }]
@@ -145,6 +158,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', ['connect', 'watch']);
   grunt.registerTask('views', ['copy', 'wiredep']);
-  grunt.registerTask('scripts', ['requirejs', 'concat']);
+  grunt.registerTask('scripts', ['ngAnnotate', 'requirejs', 'concat']);
   grunt.registerTask('default', ['clean', 'concurrent']);
 };

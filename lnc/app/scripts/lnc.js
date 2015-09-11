@@ -1,40 +1,34 @@
-define(['loader'], function (loader) {
+define(['resolver'], function (resolver) {
   'use strict';
 
   var module = angular.module('lnc', ['ngRoute']);
 
-  module.config(
-      [
-        '$locationProvider',
-        '$controllerProvider',
-        '$compileProvider',
-        '$filterProvider',
-        '$provide',
+  module.config([
+    '$controllerProvider',
+    '$compileProvider',
+    '$filterProvider',
+    '$provide',
+    '$routeProvider',
+    function ($controllerProvider, $compileProvider, $filterProvider, $provide, $routeProvider) {
 
-        function ($locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
-          module.controller = $controllerProvider.register;
-          module.directive = $compileProvider.directive;
-          module.filter = $filterProvider.register;
-          module.factory = $provide.factory;
-          module.service = $provide.service;
+      angular.extend(module, {
+        controller: $controllerProvider.register,
+        directive: $compileProvider.directive,
+        filter: $filterProvider.register,
+        factory: $provide.factory,
+        service: $provide.service
+      });
 
-          /*$locationProvider.html5Mode(true);*/
-        }
-      ])
-    .config(
-      [
-        '$routeProvider',
-        function ($routeProvider) {
-          $routeProvider
-            .when('/', {
-              templateUrl: 'views/landing.html',
-              resolve: loader(['controllers/LandingController'])
-            })
-            .otherwise({
-              redirectTo: '/'
-            });
-        }
-      ]);
+      $routeProvider
+        .when('/', {
+          templateUrl: 'views/landing.html',
+          resolve: resolver('LandingController')
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    }
+  ]);
 
   return module;
 });

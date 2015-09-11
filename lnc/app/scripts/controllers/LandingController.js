@@ -3,7 +3,6 @@ define(['lnc'], function (lnc) {
 
   lnc.controller('LandingController', [
     '$scope',
-
     function ($scope) {
       $scope.page = {
         heading: 'Welcome'
