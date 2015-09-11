@@ -1,9 +1,9 @@
-define([], function () {
+define(function () {
   'use strict';
 
   return function (dependencies) {
-    var definition = {
-      resolver: ['$q', '$rootScope', function ($q, $rootScope) {
+    return {
+      loader: ['$q', '$rootScope', function ($q, $rootScope) {
         var deferred = $q.defer();
 
         require(dependencies, function () {
@@ -15,7 +15,5 @@ define([], function () {
         return deferred.promise;
       }]
     };
-
-    return definition;
   };
 });
