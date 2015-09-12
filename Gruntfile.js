@@ -1,7 +1,10 @@
 module.exports = function (grunt) {
   'use strict';
 
-  require('jit-grunt')(grunt);
+  // Automatically load required Grunt tasks
+  require('jit-grunt')(grunt, {
+    ngtemplates: 'grunt-angular-templates'
+  });
 
   var config = {
     lnc: {
@@ -33,8 +36,7 @@ module.exports = function (grunt) {
           cwd: '<%= config.lnc.app %>',
           dest: '<%= config.lnc.dist %>',
           src: [
-            'index.html',
-            'views/*.html'
+            'index.html'
           ]
         }]
       }
@@ -57,6 +59,24 @@ module.exports = function (grunt) {
             }
           }
         }
+      }
+    },
+
+    ngtemplates: {
+      lnc: {
+        options: {
+          module: 'lnc',
+          /*bootstrap: function (module, script) {
+            return 'define(function() { return [\'$templateCache\',function($templateCache){' + script + '}] });';
+          }*/
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= config.lnc.app %>',
+          src: 'views/{,/*}.html',
+          dest: '<%= config.lnc.dist %>',
+          ext: '.js'
+        }]
       }
     },
 
@@ -157,7 +177,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('serve', ['connect', 'watch']);
-  grunt.registerTask('views', ['copy', 'wiredep']);
+  grunt.registerTask('views', ['copy', 'wiredep', 'ngtemplates']);
   grunt.registerTask('scripts', ['ngAnnotate', 'requirejs', 'concat']);
   grunt.registerTask('default', ['clean', 'concurrent']);
 };
