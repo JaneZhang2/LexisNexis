@@ -66,17 +66,19 @@ module.exports = function (grunt) {
       lnc: {
         options: {
           module: 'lnc',
-          /*bootstrap: function (module, script) {
-            return 'define(function() { return [\'$templateCache\',function($templateCache){' + script + '}] });';
-          }*/
+          bootstrap: function (module, script) {
+            return 'define(function() { return function($templateCache){' + script + '} });';
+          }
         },
-        files: [{
-          expand: true,
-          cwd: '<%= config.lnc.app %>',
-          src: 'views/{,/*}.html',
-          dest: '<%= config.lnc.dist %>',
-          ext: '.js'
-        }]
+        files: {
+          '<%= config.lnc.dist %>/views/test.js': '<%= config.lnc.app %>/views/{,/*}.html'
+            // expand: true,
+            // cwd: '<%= config.lnc.app %>',
+            // src: 'views/{,/*}.html',
+            // dest: '<%= config.lnc.dist %>',
+            // ext: '.js'
+
+        }
       }
     },
 
@@ -110,9 +112,9 @@ module.exports = function (grunt) {
         options: {
           appDir: 'lnc/app/scripts',
           baseUrl: './',
-          mainConfigFile: '<%= config.lnc.app %>/scripts/config.js',
+          mainConfigFile: '<%= config.lnc.app %>/scripts/main.js',
           dir: '<%= config.lnc.dist %>/scripts',
-          /*skipDirOptimize: true,*/
+          skipDirOptimize: true,
           modules: [{
             name: 'main'
           }]
@@ -122,7 +124,7 @@ module.exports = function (grunt) {
 
     bowerRequirejs: {
       lnc: {
-        rjsConfig: '<%= config.lnc.app %>/scripts/config.js',
+        rjsConfig: '<%= config.lnc.app %>/scripts/main.js',
         options: {
           exclude: 'requirejs'
         }

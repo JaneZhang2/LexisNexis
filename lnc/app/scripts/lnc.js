@@ -1,34 +1,40 @@
-define(['resolver'], function (resolver) {
+define(function () {
   'use strict';
 
-  var module = angular.module('lnc', ['ngRoute']);
+  return angular.module('lnc', ['ui.router', 'oc.lazyLoad'])
+    .config(function ($stateProvider, $locationProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+      $urlRouterProvider.otherwise('/');
+      /*$locationProvider.hashPrefix('!');*/
 
-  module.config([
-    '$controllerProvider',
-    '$compileProvider',
-    '$filterProvider',
-    '$provide',
-    '$routeProvider',
-    function ($controllerProvider, $compileProvider, $filterProvider, $provide, $routeProvider) {
+      $stateProvider
+        .state('/', {
+          url: '/',
+          views: {
+            'lazyLoadView': {
+              controller: 'LandingController', // This view will use AppCtrl loaded below in the resolve
+              templateUrl: 'views/landing.html'
+            }
+          },
+          resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
+            loadMyCtrl: ['$q', '$ocLazyLoad', '$templateCache', function ($q, $ocLazyLoad, $templateCache) {
+              var promises = [],
+                deferred = $q.defer();
+              require(['../views/landing'], function (template) {
+                template($templateCache);
+                deferred.resolve();
+              });
+              promises.push(deferred.promise);
 
-      angular.extend(module, {
-        controller: $controllerProvider.register,
-        directive: $compileProvider.directive,
-        filter: $filterProvider.register,
-        factory: $provide.factory,
-        service: $provide.service
-      });
+              promises.push($ocLazyLoad.load([
+                'scripts/controllers/LandingController.js'
+              ]));
 
-      $routeProvider
-        .when('/', {
-          templateUrl: 'views/landing.html',
-          resolve: resolver('LandingController')
-        })
-        .otherwise({
-          redirectTo: '/'
+              return $q.all(promises);
+            }]
+          }
         });
-    }
-  ]);
 
-  return module;
+      // Without server side support html5 must be disabled.
+      $locationProvider.html5Mode(false);
+    });
 });
