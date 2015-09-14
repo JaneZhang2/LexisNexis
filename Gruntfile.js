@@ -62,15 +62,6 @@ module.exports = function (grunt) {
       }
     },
 
-    concat: {
-      lnc: {
-        expand: true,
-        cwd: '<%= config.lnc.app %>/scripts',
-        src: ['main.js'],
-        dest: '<%= config.lnc.dist %>/scripts'
-      }
-    },
-
     // ng-annotate tries to make the code safe for minification automatically
     // by using the Angular long form for dependency injection.
     ngAnnotate: {
@@ -79,7 +70,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= config.lnc.app %>/scripts',
           src: '{,*/}*.js',
-          dest: '<%= config.lnc.dist %>/scripts'
+          dest: '<%= config.lnc.app %>/scripts'
         }]
       }
     },
