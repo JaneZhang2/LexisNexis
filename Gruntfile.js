@@ -10,7 +10,7 @@ module.exports = function (grunt) {
     lnc: {
       app: 'lnc/app',
       dist: 'lnc/dist',
-      main: 'scripts/main-debug'
+      main: 'scripts/main'
     }
   };
 
@@ -62,23 +62,39 @@ module.exports = function (grunt) {
       }
     },
 
-    // Automatically inject Bower components into the app
-    wiredep: {
+    concat: {
       lnc: {
-        src: '<%= config.lnc.dist %>/index.html',
-        ignorePath: /(\.\.\/){2}/,
-        exclude: /^((?!requirejs).)*$/,
-        fileTypes: {
-          html: {
-            block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
-            detect: {
-              js: /<script.*src=['"]([^'"]+)/gi
-            },
-            replace: {
-              js: '<script src="{{filePath}}" data-main="<%= config.lnc.main %>"></script>'
-            }
-          }
-        }
+        expand: true,
+        cwd: '<%= config.lnc.app %>/scripts',
+        src: ['main.js', 'config.js'],
+        dest: '<%= config.lnc.dist %>/scripts'
+          // rename: function (dest) {
+          //   return dest + '/' + 'main-debug.js';
+          // }
+      }
+    },
+
+    // ng-annotate tries to make the code safe for minification automatically
+    // by using the Angular long form for dependency injection.
+    ngAnnotate: {
+      lnc: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.lnc.dist %>/scripts',
+          src: '{,*/}*.js',
+          dest: '<%= config.lnc.dist %>/scripts'
+        }]
+      }
+    },
+
+    uglify: {
+      lnc: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.lnc.dist %>',
+          src: '{,*/}*.js',
+          dest: '<%= config.lnc.dist %>'
+        }]
       }
     },
 
@@ -96,28 +112,12 @@ module.exports = function (grunt) {
       }
     },
 
-    concat: {
+    bowerRequirejs: {
       lnc: {
-        expand: true,
-        cwd: '<%= config.lnc.app %>/scripts',
-        src: ['main.js', 'config.js'],
-        dest: '<%= config.lnc.dist %>/scripts',
-        rename: function (dest) {
-          return dest + '/' + 'main-debug.js';
+        rjsConfig: '<%= config.lnc.app %>/scripts/main.js',
+        options: {
+          exclude: 'requirejs'
         }
-      }
-    },
-
-    // ng-annotate tries to make the code safe for minification automatically
-    // by using the Angular long form for dependency injection.
-    ngAnnotate: {
-      lnc: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.lnc.dist %>/scripts',
-          src: '{,*/}*.js',
-          dest: '<%= config.lnc.dist %>/scripts'
-        }]
       }
     },
 
@@ -136,11 +136,22 @@ module.exports = function (grunt) {
       }
     },
 
-    bowerRequirejs: {
+    // Automatically inject Bower components into the app
+    wiredep: {
       lnc: {
-        rjsConfig: '<%= config.lnc.app %>/scripts/main.js',
-        options: {
-          exclude: 'requirejs'
+        src: '<%= config.lnc.dist %>/index.html',
+        ignorePath: /(\.\.\/){2}/,
+        exclude: /^((?!requirejs).)*$/,
+        fileTypes: {
+          html: {
+            block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
+            detect: {
+              js: /<script.*src=['"]([^'"]+)/gi
+            },
+            replace: {
+              js: '<script src="{{filePath}}" data-main="<%= config.lnc.main %>"></script>'
+            }
+          }
         }
       }
     },
