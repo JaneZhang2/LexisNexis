@@ -11,9 +11,11 @@
     "test"
   ],
   "dependencies": {
-    "angular": "angularjs#~1.4.5",
+    "angular": "1.2.16",
     "angular-ui-router": "~0.2.15",
     "jquery": "~2.1.4",
+    "json2": "*",
+    "json3": "~3.3.2",
     "oclazyload": "~1.0.5",
     "requirejs": "~2.1.20"
   }
