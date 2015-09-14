@@ -26,7 +26,8 @@ define(function () {
               promises.push(deferred.promise);
 
               promises.push($ocLazyLoad.load([
-                'scripts/controllers/LandingController.js'
+                'controllers/LandingController',
+                'services/test'
               ]));
 
               return $q.all(promises);

@@ -1,12 +1,11 @@
-define(['lnc'], function (lnc) {
-  'use strict';
+angular.module('lnc').controller('LandingController', [
+  '$scope',
+  'test',
+  function ($scope, test) {
+    'use strict';
 
-  lnc.controller('LandingController', [
-    '$scope',
-    function ($scope) {
-      $scope.page = {
-        heading: 'Welcome'
-      };
-    }
-  ]);
-});
+    $scope.page = {
+      heading: 'Welcome'
+    };
+  }
+]);

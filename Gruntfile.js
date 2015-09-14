@@ -36,9 +36,29 @@ module.exports = function (grunt) {
           cwd: '<%= config.lnc.app %>',
           dest: '<%= config.lnc.dist %>',
           src: [
-            'index.html'
+            'index.html',
+            'images/{,*/}*.{png,jpg,jpeg,gif}'
           ]
         }]
+      }
+    },
+
+    // The following *-min tasks will produce minified files in the dist folder
+    // By default, your `index.html`'s <!-- Usemin block --> will take care of
+    // minification. These next options are pre-configured if you do not wish
+    // to use the Usemin blocks.
+    less: {
+      lnc: {
+        files: {
+          '<%= config.lnc.dist %>/styles/main.css': '<%= config.lnc.app %>/styles/main.less'
+        }
+      }
+    },
+    cssmin: {
+      lnc: {
+        files: {
+          '<%= config.lnc.dist %>/styles/main.css': '<%= config.lnc.dist %>/styles/main.css'
+        }
       }
     },
 
@@ -63,21 +83,15 @@ module.exports = function (grunt) {
     },
 
     ngtemplates: {
-      lnc: {
+      landing: {
+        cwd: '<%= config.lnc.app %>',
+        src: 'views/landing.html',
+        dest: '<%= config.lnc.dist %>/views/landing.js',
         options: {
           module: 'lnc',
           bootstrap: function (module, script) {
             return 'define(function() { return function($templateCache){' + script + '} });';
           }
-        },
-        files: {
-          '<%= config.lnc.dist %>/views/test.js': '<%= config.lnc.app %>/views/{,/*}.html'
-            // expand: true,
-            // cwd: '<%= config.lnc.app %>',
-            // src: 'views/{,/*}.html',
-            // dest: '<%= config.lnc.dist %>',
-            // ext: '.js'
-
         }
       }
     },
@@ -134,6 +148,7 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       lnc: [
+        'styles',
         'views',
         'scripts'
       ]
@@ -179,6 +194,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('serve', ['connect', 'watch']);
+  grunt.registerTask('styles', ['less', 'cssmin']);
   grunt.registerTask('views', ['copy', 'wiredep', 'ngtemplates']);
   grunt.registerTask('scripts', ['ngAnnotate', 'requirejs', 'concat']);
   grunt.registerTask('default', ['clean', 'concurrent']);
