@@ -4,13 +4,14 @@ require.config({
     'angular-route': '../../../bower_components/angular-route/angular-route',
     jquery: '../../../bower_components/jquery/dist/jquery',
     'angular-ui-router': '../../../bower_components/angular-ui-router/release/angular-ui-router',
-    oclazyload: '../../../bower_components/oclazyload/dist/ocLazyLoad',
-    json3: '../../../bower_components/json3/lib/json3',
-    json2: '../../../bower_components/json2/json2'
+    oclazyload: '../../../bower_components/oclazyload/dist/ocLazyLoad.require',
+    json2: '../../../bower_components/json2/json2',
+    json3: '../../../bower_components/json3/lib/json3'
   },
   shim: {
     angular: [
-      'jquery'
+      'jquery',
+      'json3'
     ],
     'angular-ui-router': [
       'angular'

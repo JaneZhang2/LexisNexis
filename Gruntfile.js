@@ -92,7 +92,7 @@ module.exports = function (grunt) {
         options: {
           module: 'lnc',
           bootstrap: function (module, script) {
-            return 'define(function() { return function($templateCache){' + script + '} });';
+            return 'define(function() { return [\'$templateCache\', function($templateCache){' + script + '}] });';
           }
         }
       }
