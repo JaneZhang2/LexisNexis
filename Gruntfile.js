@@ -66,11 +66,8 @@ module.exports = function (grunt) {
       lnc: {
         expand: true,
         cwd: '<%= config.lnc.app %>/scripts',
-        src: ['main.js', 'config.js'],
+        src: ['main.js'],
         dest: '<%= config.lnc.dist %>/scripts'
-          // rename: function (dest) {
-          //   return dest + '/' + 'main-debug.js';
-          // }
       }
     },
 
@@ -80,20 +77,9 @@ module.exports = function (grunt) {
       lnc: {
         files: [{
           expand: true,
-          cwd: '<%= config.lnc.dist %>/scripts',
+          cwd: '<%= config.lnc.app %>/scripts',
           src: '{,*/}*.js',
           dest: '<%= config.lnc.dist %>/scripts'
-        }]
-      }
-    },
-
-    uglify: {
-      lnc: {
-        files: [{
-          expand: true,
-          cwd: '<%= config.lnc.dist %>',
-          src: '{,*/}*.js',
-          dest: '<%= config.lnc.dist %>'
         }]
       }
     },
@@ -207,6 +193,6 @@ module.exports = function (grunt) {
   grunt.registerTask('serve', ['connect', 'watch']);
   grunt.registerTask('styles', ['less', 'cssmin']);
   grunt.registerTask('views', ['copy', 'wiredep', 'ngtemplates']);
-  grunt.registerTask('scripts', ['ngAnnotate', 'requirejs', 'concat']);
+  grunt.registerTask('scripts', ['ngAnnotate', 'requirejs']);
   grunt.registerTask('default', ['clean', 'concurrent']);
 };
