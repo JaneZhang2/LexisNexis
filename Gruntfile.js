@@ -76,16 +76,20 @@ module.exports = function (grunt) {
     },
 
     ngtemplates: {
+      options: {
+        module: 'lnc',
+        bootstrap: function (module, script) {
+          return 'define(function() { return [\'$templateCache\', function($templateCache){' + script + '}] });';
+        }
+      },
       landing: {
         cwd: '<%= config.lnc.app %>',
-        src: 'views/landing.html',
-        dest: '<%= config.lnc.dist %>/views/landing.js',
-        options: {
-          module: 'lnc',
-          bootstrap: function (module, script) {
-            return 'define(function() { return [\'$templateCache\', function($templateCache){' + script + '}] });';
-          }
-        }
+        src: [
+          'views/topbar.html',
+          'views/landing.html',
+          'views/footer.html'
+        ],
+        dest: '<%= config.lnc.dist %>/views/landing.js'
       }
     },
 

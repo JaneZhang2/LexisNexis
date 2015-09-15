@@ -9,9 +9,15 @@ define(function () {
         .state('landing', {
           url: '/',
           views: {
+            'topbar': {
+              templateUrl: 'views/topbar.html'
+            },
             'content': {
               controller: 'LandingController', // This view will use AppCtrl loaded below in the resolve
               templateUrl: 'views/landing.html'
+            },
+            'footer': {
+              templateUrl: 'views/footer.html'
             }
           },
           resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
