@@ -85,7 +85,7 @@ module.exports = function (grunt) {
       landing: {
         cwd: '<%= config.lnc.app %>',
         src: [
-          'views/topbar.html',
+          'views/toolbar.html',
           'views/landing.html',
           'views/footer.html'
         ],
