@@ -25,6 +25,6 @@ require.config({
   ]
 });
 
-require(['modules/landing'], function () {
+require(['modules/search'], function () {
   angular.bootstrap(document, ['lnc']);
 });
