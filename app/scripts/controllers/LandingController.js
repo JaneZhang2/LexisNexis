@@ -1,7 +1,6 @@
 angular.module('lnc').controller('LandingController', [
   '$scope',
-  'test',
-  function ($scope, test) {
+  function ($scope) {
     'use strict';
 
     $scope.page = {

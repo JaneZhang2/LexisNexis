@@ -1,5 +1,5 @@
 {
-  "name": "lexisnexis",
+  "name": "lnc",
   "version": "0.0.0",
   "author": "jane",
   "devDependencies": {
@@ -20,6 +20,15 @@
     "grunt-ng-annotate": "^1.0.1",
     "grunt-usemin": "^3.1.1",
     "grunt-wiredep": "^2.0.0",
-    "jit-grunt": "^0.9.1"
+    "jasmine-core": "^2.3.4",
+    "jit-grunt": "^0.9.1",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-ie-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-safari-launcher": "^0.1.1",
+    "phantomjs": "^1.9.18"
   }
 }

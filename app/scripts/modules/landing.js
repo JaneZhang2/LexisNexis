@@ -25,8 +25,7 @@ define(function () {
             }],
             components: ['$ocLazyLoad', function ($ocLazyLoad) { //加载组件
               return $ocLazyLoad.load([
-                'controllers/LandingController',
-                'services/test'
+                'controllers/LandingController'
               ]);
             }]
           }

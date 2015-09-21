@@ -7,11 +7,9 @@ module.exports = function (grunt) {
   });
 
   var config = {
-    lnc: {
-      app: 'lnc/app',
-      dist: 'lnc/dist',
-      main: 'scripts/main'
-    }
+    app: 'app',
+    dist: 'dist',
+    main: 'scripts/main'
   };
 
   // Define the configuration for all the tasks
@@ -25,7 +23,7 @@ module.exports = function (grunt) {
       options: {
         force: true
       },
-      lnc: '<%= config.lnc.dist %>'
+      lnc: '<%= config.dist %>'
     },
 
     // Copies remaining files to places other tasks can use
@@ -33,8 +31,8 @@ module.exports = function (grunt) {
       lnc: {
         files: [{
           expand: true,
-          cwd: '<%= config.lnc.app %>',
-          dest: '<%= config.lnc.dist %>',
+          cwd: '<%= config.app %>',
+          dest: '<%= config.dist %>',
           src: [
             'index.html',
             'images/{,*/}*.{png,jpg,jpeg,gif}'
@@ -50,14 +48,14 @@ module.exports = function (grunt) {
     less: {
       lnc: {
         files: {
-          '<%= config.lnc.dist %>/styles/main.css': '<%= config.lnc.app %>/styles/main.less'
+          '<%= config.dist %>/styles/main.css': '<%= config.app %>/styles/main.less'
         }
       }
     },
     cssmin: {
       lnc: {
         files: {
-          '<%= config.lnc.dist %>/styles/main.css': '<%= config.lnc.dist %>/styles/main.css'
+          '<%= config.dist %>/styles/main.css': '<%= config.dist %>/styles/main.css'
         }
       }
     },
@@ -68,9 +66,9 @@ module.exports = function (grunt) {
       lnc: {
         files: [{
           expand: true,
-          cwd: '<%= config.lnc.app %>/scripts',
+          cwd: '<%= config.app %>/scripts',
           src: '{,*/}*.js',
-          dest: '<%= config.lnc.app %>/scripts'
+          dest: '<%= config.app %>/scripts'
         }]
       }
     },
@@ -83,19 +81,26 @@ module.exports = function (grunt) {
         }
       },
       landing: {
-        cwd: '<%= config.lnc.app %>',
+        cwd: '<%= config.app %>',
         src: [
           'views/toolbar.html',
           'views/landing.html',
           'views/footer.html'
         ],
-        dest: '<%= config.lnc.dist %>/views/landing.js'
+        dest: '<%= config.dist %>/views/landing.js'
+      },
+      'search/quick': {
+        cwd: '<%= config.app %>',
+        src: [
+          'views/search/quick.html'
+        ],
+        dest: '<%= config.dist %>/views/search/quick.js'
       }
     },
 
     bowerRequirejs: {
       lnc: {
-        rjsConfig: '<%= config.lnc.app %>/scripts/main.js',
+        rjsConfig: '<%= config.app %>/scripts/main.js',
         options: {
           exclude: 'requirejs'
         }
@@ -105,10 +110,10 @@ module.exports = function (grunt) {
     requirejs: {
       lnc: {
         options: {
-          appDir: 'lnc/app/scripts',
+          appDir: 'app/scripts',
           baseUrl: './',
-          mainConfigFile: '<%= config.lnc.app %>/scripts/main.js',
-          dir: '<%= config.lnc.dist %>/scripts',
+          mainConfigFile: '<%= config.app %>/scripts/main.js',
+          dir: '<%= config.dist %>/scripts',
           skipDirOptimize: true,
           modules: [{
             name: 'main'
@@ -120,7 +125,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       lnc: {
-        src: '<%= config.lnc.dist %>/index.html',
+        src: '<%= config.dist %>/index.html',
         ignorePath: /(\.\.\/){2}/,
         exclude: /^((?!requirejs).)*$/,
         fileTypes: {
@@ -130,7 +135,7 @@ module.exports = function (grunt) {
               js: /<script.*src=['"]([^'"]+)/gi
             },
             replace: {
-              js: '<script src="{{filePath}}" data-main="<%= config.lnc.main %>"></script>'
+              js: '<script src="{{filePath}}" data-main="<%= config.main %>"></script>'
             }
           }
         }
@@ -153,7 +158,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.lnc.dist %>/**/*.{css,js,html,png,jpg,jpeg,gif}'
+          '<%= config.dist %>/**/*.{css,js,html,png,jpg,jpeg,gif}'
         ]
       }
     },
@@ -176,7 +181,7 @@ module.exports = function (grunt) {
                 '/bower_components',
                 connect.static('./bower_components')
               ),
-              connect.static(config.lnc.dist)
+              connect.static(config.dist)
             ];
           }
         }
