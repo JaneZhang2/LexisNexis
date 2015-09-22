@@ -8,6 +8,7 @@ module.exports = function (grunt) {
 
   var config = {
     app: 'app',
+    tmp: '.tmp',
     dist: 'dist',
     main: 'scripts/main'
   };
@@ -23,7 +24,8 @@ module.exports = function (grunt) {
       options: {
         force: true
       },
-      lnc: '<%= config.dist %>'
+      tmp: '<%= config.tmp %>',
+      dist: '<%= config.dist %>'
     },
 
     // Copies remaining files to places other tasks can use
@@ -68,7 +70,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= config.app %>/scripts',
           src: '{,*/}*.js',
-          dest: '<%= config.app %>/scripts'
+          dest: '.tmp/scripts'
         }]
       }
     },
@@ -110,11 +112,11 @@ module.exports = function (grunt) {
     requirejs: {
       lnc: {
         options: {
-          appDir: '<%= config.app %>/scripts',
+          appDir: '.tmp/scripts',
           baseUrl: './',
-          mainConfigFile: '<%= config.app %>/scripts/main.js',
+          mainConfigFile: '<%= config.tmp %>/scripts/main.js',
           dir: '<%= config.dist %>/scripts',
-          // skipDirOptimize: true,
+          // skipDirOptimize: true,//--debug
           modules: [{
             name: 'main'
           }]
@@ -193,5 +195,5 @@ module.exports = function (grunt) {
   grunt.registerTask('styles', ['less', 'cssmin']);
   grunt.registerTask('views', ['copy', 'wiredep', 'ngtemplates']);
   grunt.registerTask('scripts', ['ngAnnotate', 'requirejs']);
-  grunt.registerTask('default', ['clean', 'concurrent']);
+  grunt.registerTask('default', ['clean:dist', 'concurrent', 'clean:tmp']);
 };

@@ -1,7 +1,4 @@
 angular.module('lnc')
-  .controller('SearchQuickController', [
-    '$scope',
-    function ($scope) {
-      $scope.message = 'Welcome';
-    }
-  ]);
+  .controller('SearchQuickController', function ($scope) {
+    $scope.message = 'Welcome';
+  });
