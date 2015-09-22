@@ -34,7 +34,7 @@ module.exports = function (grunt) {
           cwd: '<%= config.app %>',
           dest: '<%= config.dist %>',
           src: [
-            'index.html',
+            '*.html',
             'images/{,*/}*.{png,jpg,jpeg,gif}'
           ]
         }]
@@ -125,8 +125,8 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       lnc: {
-        src: '<%= config.dist %>/index.html',
-        ignorePath: /(\.\.\/){2}/,
+        src: ['<%= config.dist %>/*.html'],
+        // ignorePath: /(\.\.\/){2}/,
         exclude: /^((?!requirejs).)*$/,
         fileTypes: {
           html: {
@@ -174,7 +174,6 @@ module.exports = function (grunt) {
       },
       lnc: {
         options: {
-
           middleware: function (connect) {
             return [
               connect().use(

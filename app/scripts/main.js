@@ -17,6 +17,7 @@ require.config({
     'modules/search': [
       'angular',
       'angular-ui-router',
+      'angular-translate',
       'oclazyload'
     ]
   },
@@ -25,6 +26,6 @@ require.config({
   ]
 });
 
-require(['modules/search'], function () {
+require(lnc.dependencies, function () {
   angular.bootstrap(document, ['lnc']);
 });

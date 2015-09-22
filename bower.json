@@ -12,7 +12,8 @@
   ],
   "dependencies": {
     "angular": "1.2.16",
-    "angular-translate": "~2.7.2",
+    "angular-gettext": "~2.1.0",
+    "angular-translate": "2.4.0",
     "angular-ui-router": "~0.2.15",
     "jquery": "~2.1.4",
     "json2": "*",

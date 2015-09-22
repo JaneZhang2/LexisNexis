@@ -1,5 +1,5 @@
 define(function () {
-  return angular.module('lnc', ['ui.router', 'oc.lazyLoad'])
+  return angular.module('lnc2', ['ui.router', 'oc.lazyLoad'])
     .config(["$stateProvider", "$locationProvider", "$urlRouterProvider", "$ocLazyLoadProvider", function ($stateProvider, $locationProvider, $urlRouterProvider, $ocLazyLoadProvider) {
       $urlRouterProvider.otherwise('/');
 
