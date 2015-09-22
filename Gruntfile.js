@@ -96,7 +96,7 @@ module.exports = function (grunt) {
         src: [
           'views/search/quick.html'
         ],
-        dest: '<%= config.dist %>/views/search/quick.js'
+        dest: '<%= config.tmp %>/views/search/quick.js'
       }
     },
 
@@ -110,7 +110,7 @@ module.exports = function (grunt) {
     },
 
     requirejs: {
-      lnc: {
+      scripts: {
         options: {
           appDir: '.tmp/scripts',
           baseUrl: './',
@@ -120,6 +120,17 @@ module.exports = function (grunt) {
           modules: [{
             name: 'main'
           }]
+        }
+      },
+      views: {
+        options: {
+          appDir: '.tmp/views',
+          baseUrl: './',
+          dir: '<%= config.dist %>/views'
+            // skipDirOptimize: true,//--debug
+            // modules: [{
+            //   name: 'main'
+            // }]
         }
       }
     },
@@ -193,7 +204,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', ['connect', 'watch']);
   grunt.registerTask('styles', ['less', 'cssmin']);
-  grunt.registerTask('views', ['copy', 'wiredep', 'ngtemplates']);
-  grunt.registerTask('scripts', ['ngAnnotate', 'requirejs']);
+  grunt.registerTask('views', ['copy', 'wiredep', 'ngtemplates', 'requirejs:views']);
+  grunt.registerTask('scripts', ['ngAnnotate', 'requirejs:scripts']);
   grunt.registerTask('default', ['clean:dist', 'concurrent', 'clean:tmp']);
 };
