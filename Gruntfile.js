@@ -110,11 +110,11 @@ module.exports = function (grunt) {
     requirejs: {
       lnc: {
         options: {
-          appDir: 'app/scripts',
+          appDir: '<%= config.app %>/scripts',
           baseUrl: './',
           mainConfigFile: '<%= config.app %>/scripts/main.js',
           dir: '<%= config.dist %>/scripts',
-          skipDirOptimize: true,
+          // skipDirOptimize: true,
           modules: [{
             name: 'main'
           }]

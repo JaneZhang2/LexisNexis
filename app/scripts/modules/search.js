@@ -8,8 +8,8 @@ define(function () {
         });
         $translateProvider.preferredLanguage('en');
 
-        $urlRouterProvider.when('/', '/quick')
-          .otherwise('/');
+        // $urlRouterProvider.when('/', '/quick')
+        //   .otherwise('/');
 
         $stateProvider
           .state('quick', {

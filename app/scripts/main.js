@@ -26,6 +26,6 @@ require.config({
   ]
 });
 
-require(lnc.dependencies, function () {
+require(['modules/search'], function () {
   angular.bootstrap(document, ['lnc']);
 });
