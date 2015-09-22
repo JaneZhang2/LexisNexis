@@ -70,7 +70,8 @@ define(function () {
             components: ['$ocLazyLoad', function ($ocLazyLoad) { //加载组件
               return $ocLazyLoad.load([
                 'controllers/SearchQuickController',
-                'services/content_types'
+                'models/content_types',
+                'services/lncContentTypeChecked'
               ]);
             }]
           }

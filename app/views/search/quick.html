@@ -5,7 +5,7 @@
         <h2>{{'CONTENT_TYPES'|translate}}</h2>
         <ul>
           <li ng-repeat="content_type in content_types">
-            <input type="checkbox" ng-checked="content_type.checked">
+            <input type="checkbox" ng-checked="content_type.checked||content_types[9].checked" ng-model="content_type.checked">
             <label>{{'CONTENT_TYPE_'+content_type.id|translate}}</label>
           </li>
         </ul>
@@ -25,6 +25,6 @@
         <i>?</i>
       </div>
     </div>
-    <div class="aside">{{formData}}</div>
+    <div class="aside">{{content_types}}</div>
   </div>
 </div>
