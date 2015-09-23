@@ -1,11 +1,12 @@
 define([
   'handlers/mouseenter.select',
   'handlers/mouseleave.select'
-], function () {
+], function (mouseenter, mouseleave) {
   angular.module('lnc')
     .directive('lncSelect', function () {
-      return function () {
-        console.log('lnc-select is coding...');
+      return function (scope, element, attrs) {
+        element.on('mouseenter', mouseenter)
+          .on('mouseleave', mouseleave);
       };
     });
 });

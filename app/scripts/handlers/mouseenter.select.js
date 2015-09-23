@@ -1,5 +1,5 @@
 define(function () {
-  return function () {
-    console.log('mouseenter.select is coding...');
+  return function (e) {
+    $(e.currentTarget).find('ul').show();
   };
 });

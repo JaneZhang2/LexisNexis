@@ -1,5 +1,5 @@
 define(function () {
-  return function () {
-    console.log('lnc-select/mouseleave is coding...');
+  return function (e) {
+    $(e.currentTarget).find('ul').hide();
   };
 });
