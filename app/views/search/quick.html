@@ -2,35 +2,41 @@
   <div class="container">
     <div class="article">
       <div class="section">
-        <h2>{{'CONTENT_TYPES'|translate}}</h2>
-        <ul>
+        <strong>{{'CONTENT_TYPES'|translate}}</strong>
+        <ul class="filter">
           <li ng-repeat="content_type in content_types">
-            <input type="checkbox" ng-checked="content_type.checked||content_types[9].checked" ng-model="content_type.checked">
+            <input type="checkbox" class="checkbox">
             <label>{{'CONTENT_TYPE_'+content_type.id|translate}}</label>
           </li>
         </ul>
       </div>
-      <div class="section searcher cf">
-        <h2>{{'SEARCH'|translate}}</h2>
-        <input type="text" class="keyword" lnc-keyword>
-        <div class="lnc-select" lnc-select>
-          <input type="text" readonly class="selected" ng-model="coding...">
-          <a href="javascript:;" class="toggle dib"></a>
-          <ul>
-            <li>
-              <a href="javascript:;" class="item">{{'ALL_FIELDS'|translate}}</a>
-            </li>
-            <li>
-              <a href="javascript:;" class="item">{{'TITLE_ONLY'|translate}}</a>
-            </li>
-          </ul>
+      <div class="section">
+        <div>
+          <strong>{{'SEARCH'|translate}}</strong>
+          <input type="text" class="keyword" name="keyword" lnc-keyword>
+          <div class="lnc-select dib" lnc-select>
+            <input type="text" readonly class="selected" value="所有字段">
+            <a href="javascript:;" class="toggle dib"></a>
+            <ul>
+              <li>
+                <a href="javascript:;" class="item">{{'ALL_FIELDS'|translate}}</a>
+              </li>
+              <li>
+                <a href="javascript:;" class="item">{{'TITLE_ONLY'|translate}}</a>
+              </li>
+            </ul>
+          </div>
+          <input type="submit" class="lnc-button-submit dib" value="{{'SUBMIT'|translate}}" lnc-submit>
         </div>
-        <input type="submit" value="{{'SUBMIT'|translate}}" lnc-submit>
-        <p>{{'ANONYMOUS_KEY'|translate}}</p>
-        <a href="javascript:;" lnc-connector>AND</a>
-        <a href="javascript:;" lnc-connector>OR</a>
-        <a href="javascript:;" lnc-connector>NOT</a>
-        <a href="javascript:;" lnc-helper>?</a>
+        <div class="lnc-button-container cf">
+          <i>{{'ANONYMOUS_KEY'|translate}}</i>
+          <div class="fr">
+            <a href="javascript:;" class="lnc-button-and dib" lnc-connector></a>
+            <a href="javascript:;" class="lnc-button-or dib" lnc-connector></a>
+            <a href="javascript:;" class="lnc-button-not dib" lnc-connector></a>
+            <a href="javascript:;" class="lnc-button-helper dib" lnc-helper></a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="aside">{{content_types}}</div>

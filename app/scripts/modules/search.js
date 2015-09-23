@@ -4,7 +4,7 @@ define(function () {
       $translateProvider.translations('cn', {
           CONTENT_TYPES: '请选择内容类别',
           SEARCH: '智能搜索',
-          SUBMIT: '提交',
+          SUBMIT: '提 交',
           CONTENT_TYPE_1: '政策法规',
           CONTENT_TYPE_2: '国家标准',
           CONTENT_TYPE_3: '新法快报',
