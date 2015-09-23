@@ -15,10 +15,15 @@
     "angular-gettext": "~2.1.0",
     "angular-translate": "2.4.0",
     "angular-ui-router": "~0.2.15",
+    "angularAMD": "~0.2.1",
     "jquery": "~2.1.4",
+    "jquery-ui": "~1.11.4",
     "json2": "*",
     "json3": "~3.3.2",
     "oclazyload": "~1.0.5",
     "requirejs": "~2.1.20"
+  },
+  "devDependencies": {
+    "ui-router-extras": "~0.0.14"
   }
 }

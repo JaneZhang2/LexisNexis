@@ -10,13 +10,23 @@
           </li>
         </ul>
       </div>
-      <div class="section">
+      <div class="section searcher">
         <h2>{{'SEARCH'|translate}}</h2>
-        <input type="text">
-        <select>
-          <option>{{'ALL_FIELDS'|translate}}</option>
-          <option>{{'TITLE_ONLY'|translate}}</option>
-        </select>
+        <div class="container cf">
+          <input type="text" class="text">
+          <div class="lnc-select">
+            <input type="text" readonly value="所有字段">
+            <a href="javascript:;" class="toggle dib"></a>
+            <ul>
+              <li>
+                <a href="javascript:;" class="item">{{'ALL_FIELDS'|translate}}</a>
+              </li>
+              <li>
+                <a href="javascript:;" class="item">{{'TITLE_ONLY'|translate}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
         <input type="submit" value="{{'SUBMIT'|translate}}">
         <p>{{'ANONYMOUS_KEY'|translate}}</p>
         <a href="javascript:;">AND</a>

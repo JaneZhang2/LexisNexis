@@ -4,7 +4,6 @@ define(function () {
       $translateProvider.translations('cn', {
           CONTENT_TYPES: '请选择内容类别',
           SEARCH: '智能搜索',
-          INPUT_KEYWORD: '请输入关键字',
           SUBMIT: '提交',
           CONTENT_TYPE_1: '政策法规',
           CONTENT_TYPE_2: '国家标准',
@@ -23,7 +22,6 @@ define(function () {
         .translations('en', {
           CONTENT_TYPES: 'Content types',
           SEARCH: 'Search',
-          INPUT_KEYWORD: 'Input Keyword',
           SUBMIT: 'Submit',
           CONTENT_TYPE_1: 'Legislation',
           CONTENT_TYPE_2: 'National standard',

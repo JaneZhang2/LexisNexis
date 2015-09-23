@@ -40,6 +40,18 @@ module.exports = function (grunt) {
             'images/{,*/}*.{png,jpg,jpeg,gif}'
           ]
         }]
+      },
+      debug: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.app %>',
+          dest: '<%= config.dist %>',
+          src: [
+            '*.html',
+            'scripts/main.js',
+            'images/{,*/}*.{png,jpg,jpeg,gif}'
+          ]
+        }]
       }
     },
 
@@ -116,7 +128,7 @@ module.exports = function (grunt) {
           baseUrl: './',
           mainConfigFile: '<%= config.tmp %>/scripts/main.js',
           dir: '<%= config.dist %>/scripts',
-          // skipDirOptimize: true,//--debug
+          skipDirOptimize: true, //--debug
           modules: [{
             name: 'main'
           }]
@@ -127,10 +139,6 @@ module.exports = function (grunt) {
           appDir: '.tmp/views',
           baseUrl: './',
           dir: '<%= config.dist %>/views'
-            // skipDirOptimize: true,//--debug
-            // modules: [{
-            //   name: 'main'
-            // }]
         }
       }
     },
