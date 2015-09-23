@@ -10,29 +10,27 @@
           </li>
         </ul>
       </div>
-      <div class="section searcher">
+      <div class="section searcher cf">
         <h2>{{'SEARCH'|translate}}</h2>
-        <div class="container cf">
-          <input type="text" class="text">
-          <div class="lnc-select">
-            <input type="text" readonly value="所有字段">
-            <a href="javascript:;" class="toggle dib"></a>
-            <ul>
-              <li>
-                <a href="javascript:;" class="item">{{'ALL_FIELDS'|translate}}</a>
-              </li>
-              <li>
-                <a href="javascript:;" class="item">{{'TITLE_ONLY'|translate}}</a>
-              </li>
-            </ul>
-          </div>
+        <input type="text" class="keyword" lnc-keyword>
+        <div class="lnc-select" lnc-select>
+          <input type="text" readonly class="selected" ng-model="coding...">
+          <a href="javascript:;" class="toggle dib"></a>
+          <ul>
+            <li>
+              <a href="javascript:;" class="item">{{'ALL_FIELDS'|translate}}</a>
+            </li>
+            <li>
+              <a href="javascript:;" class="item">{{'TITLE_ONLY'|translate}}</a>
+            </li>
+          </ul>
+          <input type="submit" value="{{'SUBMIT'|translate}}">
+          <p>{{'ANONYMOUS_KEY'|translate}}</p>
+          <a href="javascript:;" lnc-connector>AND</a>
+          <a href="javascript:;" lnc-connector>OR</a>
+          <a href="javascript:;" lnc-connector>NOT</a>
+          <a href="javascript:;" lnc-connector>NOT</a>
         </div>
-        <input type="submit" value="{{'SUBMIT'|translate}}">
-        <p>{{'ANONYMOUS_KEY'|translate}}</p>
-        <a href="javascript:;">AND</a>
-        <a href="javascript:;">OR</a>
-        <a href="javascript:;">NOT</a>
-        <i>?</i>
       </div>
     </div>
     <div class="aside">{{content_types}}</div>

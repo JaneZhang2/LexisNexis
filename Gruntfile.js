@@ -81,7 +81,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= config.app %>/scripts',
-          src: '{,*/}*.js',
+          src: '**/*.js',
           dest: '.tmp/scripts'
         }]
       }
@@ -128,7 +128,7 @@ module.exports = function (grunt) {
           baseUrl: './',
           mainConfigFile: '<%= config.tmp %>/scripts/main.js',
           dir: '<%= config.dist %>/scripts',
-          skipDirOptimize: true, //--debug
+          // skipDirOptimize: true, //--debug
           modules: [{
             name: 'main'
           }]

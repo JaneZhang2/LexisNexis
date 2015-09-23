@@ -69,7 +69,11 @@ define(function () {
               return $ocLazyLoad.load([
                 'controllers/SearchQuickController',
                 'models/content_types',
-                'services/lncContentTypeChecked'
+                'directives/lncContentTypeChecked',
+                'directives/keyword',
+                'directives/select',
+                'directives/connector',
+                'directives/helper'
               ]);
             }]
           }
