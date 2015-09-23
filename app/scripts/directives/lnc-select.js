@@ -1,6 +1,6 @@
 define([
-  'handlers/select/mouseenter',
-  'handlers/select/mouseleave'
+  'handlers/mouseenter.select',
+  'handlers/mouseleave.select'
 ], function () {
   angular.module('lnc')
     .directive('lncSelect', function () {

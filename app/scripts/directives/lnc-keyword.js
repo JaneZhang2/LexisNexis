@@ -1,6 +1,6 @@
 define([
-  'handlers/keyword/blur',
-  'handlers/keyword/focus'
+  'handlers/blur.keyword',
+  'handlers/focus.keyword'
 ], function () {
   angular.module('lnc')
     .directive('lncKeyword', function () {
