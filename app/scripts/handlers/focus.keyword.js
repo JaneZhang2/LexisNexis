@@ -1,5 +1,5 @@
 define(function () {
   return function () {
-    alert('focus.keyword is coding...');
+    this.flags.focused = true;
   };
 });

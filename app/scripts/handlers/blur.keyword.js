@@ -1,5 +1,5 @@
 define(function () {
   return function () {
-    alert('blur.keyword is coding...');
+    this.flags.focused = false;
   };
 });
