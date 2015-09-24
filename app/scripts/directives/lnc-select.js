@@ -4,9 +4,15 @@ define([
 ], function (mouseenter, mouseleave) {
   angular.module('lnc')
     .directive('lncSelect', function () {
-      return function (scope, element, attrs) {
-        element.on('mouseenter', mouseenter)
-          .on('mouseleave', mouseleave);
+      return function (scope, element) {
+        scope.flags = {};
+
+        element.on('mouseenter', function () {
+            scope.$apply(mouseenter.bind(scope));
+          })
+          .on('mouseleave', function () {
+            scope.$apply(mouseleave.bind(scope));
+          });
       };
     });
 });

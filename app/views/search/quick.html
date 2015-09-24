@@ -15,14 +15,11 @@
           <strong>{{'SEARCH'|translate}}</strong>
           <input type="text" class="keyword" name="keyword" lnc-keyword>
           <div class="lnc-select dib" lnc-select>
-            <input type="text" readonly class="selected" value="所有字段">
-            <a href="javascript:;" class="toggle dib"></a>
-            <ul>
-              <li>
-                <a href="javascript:;" class="item">{{'ALL_FIELDS'|translate}}</a>
-              </li>
-              <li>
-                <a href="javascript:;" class="item">{{'TITLE_ONLY'|translate}}</a>
+            <span class="lnc-select-current dib">{{'KEYWORD_SCOPE_'+record.keyword_scope.id|translate}}</span>
+            <a href="javascript:;" class="toggle dib" ng-class="{hover:flags.mouseenter}"></a>
+            <ul ng-show="flags.mouseenter">
+              <li ng-repeat="item in keyword_scopes">
+                <a href="javascript:;" class="item" lnc-select-item>{{'KEYWORD_SCOPE_'+item.id|translate}}</a>
               </li>
             </ul>
           </div>
@@ -39,6 +36,6 @@
         </div>
       </div>
     </div>
-    <div class="aside">{{content_types}}</div>
+    <div class="aside">{{record}}</div>
   </div>
 </div>

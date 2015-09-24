@@ -15,8 +15,8 @@ define(function () {
           CONTENT_TYPE_8: '电子杂志',
           CONTENT_TYPE_9: '外国法律',
           CONTENT_TYPE_0: '全库搜索',
-          ALL_FIELDS: '所有字段',
-          TITLE_ONLY: '仅标题',
+          KEYWORD_SCOPE_0: '所有字段',
+          KEYWORD_SCOPE_1: '仅标题',
           ANONYMOUS_KEY: '您可以使用双引号""做精确搜索'
         })
         .translations('en', {
@@ -33,8 +33,8 @@ define(function () {
           CONTENT_TYPE_8: 'Lexis newsletters',
           CONTENT_TYPE_9: 'Foreign laws',
           CONTENT_TYPE_0: 'Search all',
-          ALL_FIELDS: 'All fields',
-          TITLE_ONLY: 'Title only',
+          KEYWORD_SCOPE_0: 'All fields',
+          KEYWORD_SCOPE_1: 'Title only',
           ANONYMOUS_KEY: ''
         });
     })
@@ -74,7 +74,8 @@ define(function () {
                 'directives/lnc-select',
                 'directives/lnc-submit',
                 'directives/lnc-connector',
-                'directives/lnc-helper'
+                'directives/lnc-helper',
+                'directives/lnc-select-item'
               ]);
             }]
           }
