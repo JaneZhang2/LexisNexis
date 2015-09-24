@@ -35,10 +35,23 @@ angular.module('lnc')
       content_types: $scope.content_types
     };
 
-    $scope.$on('lnc-keyword-scope-list', function (event, args) {
+    $scope.$on('lnc-connector', function (event, args) {
       event.stopPropagation();
-      $scope.state.keyword_scope = args;
+
+      $scope.state.keyword = ($scope.state.keyword || '') + ' ' + args + ' ';
+
+      $scope.$broadcast('lnc-keyword-focus');
     });
+
+    (function () {
+
+      $scope.$on('lnc-keyword-scope-list', function (event, args) {
+        event.stopPropagation();
+
+        $scope.state.keyword_scope = args;
+      });
+
+    })();
 
     (function () {
       var counter = 0,

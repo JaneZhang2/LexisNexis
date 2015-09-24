@@ -9,6 +9,8 @@ define([
         link: function (scope, element, attrs) {
           scope.flags = {};
 
+          scope.$on('lnc-keyword-focus', focus.bind(scope));
+
           element.on('blur', function () {
               scope.$apply(blur.bind(scope));
             })
