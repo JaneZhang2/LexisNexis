@@ -13,7 +13,7 @@
       <div class="section">
         <div>
           <strong>{{'SEARCH'|translate}}</strong>
-          <input type="text" class="keyword" ng-class="{focus:flags.focused}" name="keyword" lnc-keyword>
+          <input type="text" class="keyword" ng-class="{active:flags.active}" name="keyword" ng-model="state.keyword" lnc-keyword>
           <div class="lnc-select dib" lnc-select="keyword_scope">
             <span class="lnc-select-current dib">{{'KEYWORD_SCOPE_'+state.keyword_scope.id|translate}}</span>
             <a href="javascript:;" class="toggle dib" ng-class="{hover:flags.mouseenter}"></a>

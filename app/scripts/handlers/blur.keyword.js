@@ -1,5 +1,7 @@
 define(function () {
   return function () {
-    this.flags.focused = false;
+    if (!$.trim(this.state.keyword)) {
+      this.flags.active = false;
+    }
   };
 });
