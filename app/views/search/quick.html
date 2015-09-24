@@ -4,9 +4,9 @@
       <div class="section">
         <strong>{{'CONTENT_TYPES'|translate}}</strong>
         <ul class="filter">
-          <li ng-repeat="content_type in content_types">
-            <input type="checkbox" class="checkbox">
-            <label>{{'CONTENT_TYPE_'+content_type.id|translate}}</label>
+          <li ng-repeat="item in content_types">
+            <input type="checkbox" class="checkbox" ng-checked="item.checked" ng-model="item.checked" lnc-content-type-item>
+            <label>{{'CONTENT_TYPE_'+item.id|translate}}</label>
           </li>
         </ul>
       </div>

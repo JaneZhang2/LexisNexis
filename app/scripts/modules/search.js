@@ -70,6 +70,7 @@ define(function () {
                 'controllers/SearchQuickController',
                 'models/content_types',
                 'directives/lnc-content-type',
+                'directives/lnc-content-type-item',
                 'directives/lnc-keyword',
                 'directives/lnc-select',
                 'directives/lnc-submit',

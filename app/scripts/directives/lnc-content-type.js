@@ -1,6 +1,6 @@
 angular.module('lnc')
-  .directive('lncContentTypeChecked', function () {
-    return function () {
+  .directive('lncContentType', function () {
+    return function (scope, element) {
       console.log('lncContentTypeChecked is coding...');
     };
   });
