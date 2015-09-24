@@ -1,4 +1,4 @@
-define(function () {
+define(['jquery-ui'], function () {
   return angular.module('lnc', ['ui.router', 'oc.lazyLoad', 'pascalprecht.translate'])
     .config(function ($translateProvider) {
       $translateProvider.translations('cn', {
