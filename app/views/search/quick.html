@@ -1,11 +1,11 @@
 <div class="lnc-search-quick" ng-controller="SearchQuickController">
-  <div class="container">
+  <form action="https://www.baidu.com" class="container">
     <div class="article">
       <div class="section">
         <strong>{{'CONTENT_TYPES'|translate}}</strong>
         <ul class="filter">
           <li ng-repeat="item in content_types">
-            <input type="checkbox" class="checkbox" ng-checked="item.checked" ng-model="item.checked" lnc-content-type>
+            <input type="checkbox" ng-checked="item.checked" class="checkbox" name="db_sel[]" ng-model="item.value" lnc-content-type>
             <label>{{'CONTENT_TYPE_'+item.id|translate}}</label>
           </li>
         </ul>
@@ -37,5 +37,16 @@
       </div>
     </div>
     <div class="aside">{{state}}</div>
-  </div>
+    <input type='hidden' name="searchScope" id="searchScope" value="{{state.keyword_scope.value}}" />
+    <input type='hidden' name="kwType" id="kwType" value="0" />
+    <input type='hidden' name="isSuggest" id="isSuggest" value="0" />
+    <input type='hidden' name="eng" id="eng" value="0" />
+    <input type='hidden' name="fr_keyword" id="fr_keyword" value="" />
+    <input type='hidden' name="research_type" id="research_type" value="" />
+    <input type='hidden' name="searchtime" id="searchtime" value="" />
+    <input type="hidden" name="keywordhistory_f" id="keywordhistory_f" value="" />
+    <input type="hidden" name="timehistory_f" id="timehistory_f" value="" />
+    <input type="hidden" name="keyword_ev" id="keyword_ev" value="" />
+    <input type="hidden" name="searchable" id="searchable" value="1" />
+  </form>
 </div>

@@ -1,31 +1,43 @@
 angular.module('lnc')
   .controller('SearchQuickController', function ($scope) {
     $scope.content_types = [{
-      id: 1
+      id: 1,
+      value: 'law,lawpic'
     }, {
-      id: 2
+      id: 2,
+      value: 'national_standard'
     }, {
-      id: 3
+      id: 3,
+      value: 'ep_news'
     }, {
-      id: 4
+      id: 4,
+      value: 'case'
     }, {
-      id: 5
+      id: 5,
+      value: 'commentary,dtt,journal,profNewsletter'
     }, {
-      id: 6
+      id: 6,
+      value: 'contract,pgl_content'
     }, {
-      id: 7
+      id: 7,
+      value: 'expert,ip_hottopic'
     }, {
-      id: 8
+      id: 8,
+      value: 'newsletter'
     }, {
-      id: 9
+      id: 9,
+      value: 'foreignlaw'
     }, {
-      id: 0
+      id: 0,
+      value: 'all'
     }];
 
     $scope.keyword_scopes = [{
-      id: 0
+      id: 0,
+      value: 'all'
     }, {
-      id: 1
+      id: 1,
+      value: 'title'
     }];
 
     $scope.state = {
