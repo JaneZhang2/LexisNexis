@@ -68,7 +68,6 @@ define(function () {
             components: ['$ocLazyLoad', function ($ocLazyLoad) { //加载组件
               return $ocLazyLoad.load([
                 'controllers/SearchQuickController',
-                'models/content_types',
                 'directives/lnc-content-type-checkbox',
                 'directives/lnc-keyword',
                 'directives/lnc-select',
