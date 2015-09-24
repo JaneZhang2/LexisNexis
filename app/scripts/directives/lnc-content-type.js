@@ -2,9 +2,9 @@ define([
   'handlers/click.checkbox'
 ], function (click) {
   angular.module('lnc')
-    .directive('lncContentTypeCheckbox', function () {
+    .directive('lncContentType', function () {
       return function (scope, element) {
-        var id = 'lnc-content-type-checkbox',
+        var id = 'lnc-content-type',
           item = scope.item;
 
         scope.id = id;

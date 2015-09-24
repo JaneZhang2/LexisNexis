@@ -3,10 +3,10 @@ define([
   'handlers/mouseleave.select'
 ], function (mouseenter, mouseleave) {
   angular.module('lnc')
-    .directive('lncSelect', function () {
+    .directive('lncSelectList', function () {
       return function (scope, element, attrs) {
         scope.flags = {};
-        scope.event_name = attrs.lncSelect;
+        scope.id = 'lnc-' + attrs.lncSelectList + '-list';
 
         element.on('mouseenter', function () {
             scope.$apply(mouseenter.bind(scope));

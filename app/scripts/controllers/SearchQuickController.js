@@ -35,7 +35,7 @@ angular.module('lnc')
       content_types: $scope.content_types
     };
 
-    $scope.$on("keyword_scope", function (event, args) {
+    $scope.$on('lnc-keyword-scope-list', function (event, args) {
       event.stopPropagation();
       $scope.state.keyword_scope = args;
     });
@@ -44,7 +44,7 @@ angular.module('lnc')
       var counter = 0,
         capacity = 9;
 
-      $scope.$on('lnc-content-type-checkbox', function (event, args) {
+      $scope.$on('lnc-content-type', function (event, args) {
         event.stopPropagation();
 
         var name = event.name,

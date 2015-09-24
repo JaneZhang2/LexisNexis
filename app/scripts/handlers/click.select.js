@@ -2,7 +2,7 @@ define([
   'handlers/mouseleave.select'
 ], function (mouseleave) {
   return function () {
-    this.$emit(this.event_name, this.item);
+    this.$emit(this.id, this.item);
     mouseleave.call(this);
   };
 });

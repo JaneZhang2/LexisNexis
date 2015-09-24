@@ -1,6 +1,6 @@
 define([
-  'handlers/selected.select'
-], function (click, mouseleave) {
+  'handlers/click.select'
+], function (click) {
   angular.module('lnc')
     .directive('lncSelectItem', function () {
       return function (scope, element) {
