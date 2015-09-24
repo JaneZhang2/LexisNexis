@@ -1,8 +1,6 @@
 angular.module('lnc')
   .controller('SearchQuickController', function ($scope, content_types) {
     $scope.content_types = content_types;
-    $scope.count = 0;
-    // $scope.count = content_types.length - 1;
 
     $scope.keyword_scopes = [{
       id: 0
@@ -22,30 +20,28 @@ angular.module('lnc')
       $scope.state.keyword_scope = args;
     });
 
-    $scope.$on('lnc.state.content_type', function (event, args) {
-      event.stopPropagation();
-      switch (args.id) {
-        case 0:
-          for (var i = 1; i < 10; i++) {
-            $scope.$broadcast(event.name + '.' + i, args.checked);
-          }
-          $scope.count = (args.checked ? 9 : 0);
-          break;
-        default:
-          if (args.checked) {
-            if (++$scope.count === 9) {
-              $scope.$broadcast(event.name + '.0', true);
+    (function () {
+      var counter = 0,
+        capacity = 9;
+
+      $scope.$on('lnc.state.content_type', function (event, args) {
+        event.stopPropagation();
+
+        var name = event.name,
+          checked = args.checked;
+
+        switch (args.id) {
+          case 0:
+            for (var i = 1; i <= capacity; i++) {
+              counter += (checked ? 1 : -1);
+              $scope.$broadcast(name + '.' + i, checked);
             }
-          } else {
-            $scope.count--;
-            $scope.$broadcast(event.name + '.0', args.checked);
-          }
-          // if (!args.checked) {
-          //   $scope.$broadcast(event.name + '.0', args.checked);
-          // } else if ($scope.count === 9) {
-          //   $scope.$broadcast(event.name + '.0', true);
-          // }
-          break;
-      }
-    });
+            break;
+          default:
+            counter += (checked ? 1 : -1);
+            $scope.$broadcast(name + '.0', counter === capacity);
+            break;
+        }
+      });
+    })();
   });
