@@ -24,7 +24,7 @@ angular.module('lnc')
       var counter = 0,
         capacity = 9;
 
-      $scope.$on('lnc.state.content_type', function (event, args) {
+      $scope.$on('lnc-content-type-checkbox', function (event, args) {
         event.stopPropagation();
 
         var name = event.name,
@@ -34,12 +34,12 @@ angular.module('lnc')
           case 0:
             for (var i = 1; i <= capacity; i++) {
               counter += (checked ? 1 : -1);
-              $scope.$broadcast(name + '.' + i, checked);
+              $scope.$broadcast(name + '-' + i, checked);
             }
             break;
           default:
             counter += (checked ? 1 : -1);
-            $scope.$broadcast(name + '.0', counter === capacity);
+            $scope.$broadcast(name + '-0', counter === capacity);
             break;
         }
       });

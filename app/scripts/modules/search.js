@@ -69,8 +69,7 @@ define(function () {
               return $ocLazyLoad.load([
                 'controllers/SearchQuickController',
                 'models/content_types',
-                'directives/lnc-content-type',
-                'directives/lnc-content-type-item',
+                'directives/lnc-content-type-checkbox',
                 'directives/lnc-keyword',
                 'directives/lnc-select',
                 'directives/lnc-submit',
