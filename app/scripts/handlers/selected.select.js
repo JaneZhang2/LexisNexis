@@ -2,7 +2,7 @@ define([
   'handlers/mouseleave.select'
 ], function (mouseleave) {
   return function () {
-    this.$emit('keyword_scope', this.item);
+    this.$emit(this.event_name, this.item);
     mouseleave.call(this);
   };
 });

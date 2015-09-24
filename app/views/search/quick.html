@@ -14,8 +14,8 @@
         <div>
           <strong>{{'SEARCH'|translate}}</strong>
           <input type="text" class="keyword" name="keyword" lnc-keyword>
-          <div class="lnc-select dib" lnc-select>
-            <span class="lnc-select-current dib">{{'KEYWORD_SCOPE_'+record.keyword_scope.id|translate}}</span>
+          <div class="lnc-select dib" lnc-select="keyword_scope">
+            <span class="lnc-select-current dib">{{'KEYWORD_SCOPE_'+state.keyword_scope.id|translate}}</span>
             <a href="javascript:;" class="toggle dib" ng-class="{hover:flags.mouseenter}"></a>
             <ul ng-show="flags.mouseenter">
               <li ng-repeat="item in keyword_scopes">
@@ -36,6 +36,6 @@
         </div>
       </div>
     </div>
-    <div class="aside">{{record}}</div>
+    <div class="aside">{{state}}</div>
   </div>
 </div>

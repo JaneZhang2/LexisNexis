@@ -8,7 +8,7 @@ angular.module('lnc')
       id: 1
     }];
 
-    $scope.record = {
+    $scope.state = {
       keyword_scope: {
         id: 0
       }
@@ -16,6 +16,6 @@ angular.module('lnc')
 
     $scope.$on("keyword_scope", function (event, args) {
       event.stopPropagation();
-      $scope.record.keyword_scope = args;
+      $scope.state.keyword_scope = args;
     });
   });
