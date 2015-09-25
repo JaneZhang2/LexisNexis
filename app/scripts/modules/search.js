@@ -68,6 +68,7 @@ define(['jquery-ui'], function () {
             components: ['$ocLazyLoad', function ($ocLazyLoad) { //加载组件
               return $ocLazyLoad.load([
                 'controllers/SearchQuickController',
+                'directives/lnc-feedback',
                 'directives/lnc-content-type',
                 'directives/lnc-keyword',
                 'directives/lnc-select-list',
