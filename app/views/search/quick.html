@@ -1,5 +1,60 @@
 <div class="lnc-search-quick" ng-controller="SearchQuickController">
   <form action="https://www.baidu.com" class="container">
+    <!-- toolbar start -->
+    <div class="lnc-topbar cf">
+      <ul class="tool fr cf">
+        <li>
+          <a href="javascript:;" class="lnc-button-news"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-calendar"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-home"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-landing"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-product"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-mail"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-service"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-document"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-alert"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-language"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-auto-search"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-feedback"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-help"></a>
+        </li>
+        <li>
+          <a href="javascript:;" class="lnc-button-logout">退出系统</a>
+        </li>
+      </ul>
+    </div>
+    <!-- toolbar end -->
+    <!-- header start -->
+    <div class="header">
+      <div></div>
+      <div></div>
+    </div>
+    <!-- header end -->
+    <!-- article -->
     <div class="article">
       <div class="section">
         <strong>{{'CONTENT_TYPES'|translate}}</strong>
@@ -36,6 +91,7 @@
         </div>
       </div>
     </div>
+    <!-- /article -->
     <div class="aside">{{state}}</div>
     <input type='hidden' name="searchScope" id="searchScope" value="{{state.keyword_scope.value}}" />
     <input type='hidden' name="kwType" id="kwType" value="0" />

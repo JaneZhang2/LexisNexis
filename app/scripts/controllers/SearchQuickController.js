@@ -47,13 +47,15 @@ angular.module('lnc')
       content_types: $scope.content_types
     };
 
-    $scope.$on('lnc-connector', function (event, args) {
-      event.stopPropagation();
+    (function () {
+      var state = $scope.state;
 
-      $scope.state.keyword = ($scope.state.keyword || '') + ' ' + args + ' ';
-
-      $scope.$broadcast('lnc-keyword-focus');
-    });
+      $scope.$on('lncConnector', function (event, args) {
+        event.stopPropagation();
+        state.keyword = (state.keyword || '') + ' ' + args + ' ';
+        $scope.$broadcast('lnc-keyword-focus');
+      });
+    })();
 
     (function () {
 

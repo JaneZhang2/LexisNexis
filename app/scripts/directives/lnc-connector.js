@@ -1,12 +1,22 @@
-define(function (click) {
+define([
+  'handlers/click.connector'
+], function (click) {
+  var name = 'lncConnector';
+
   angular.module('lnc')
-    .directive('lncConnector', function () {
-      return function (scope, element, attrs) {
-        element.on('click', function () {
-          scope.$apply(function () {
-            scope.$emit('lnc-connector', attrs.lncConnector);
+    .directive(name, function () {
+      return {
+        scope: true,
+        link: function (scope, element, attrs) {
+          $.extend(scope, {
+            name: name,
+            value: attrs[name]
           });
-        });
+
+          element.on('click', function () {
+            scope.$apply(click.bind(scope));
+          });
+        }
       };
     });
 });
